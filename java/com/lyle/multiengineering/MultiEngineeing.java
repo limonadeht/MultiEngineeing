@@ -20,6 +20,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.util.EnumHelper;
@@ -32,6 +33,7 @@ public class MultiEngineeing
 	public static final String MODID = "Multi-Engineeing";
 	public static final String VERSION = "Alpha-1.0.0";
 	public static final String acceptedMinecraftVersions = "[1.7,)";
+
 
 	//Items
 	public static Item AOPItem;
@@ -46,6 +48,10 @@ public class MultiEngineeing
     public static Item SFX2400ItemPickaxe;
     public static Item SFXItemSeedIron;
 	public static Item SFXItemCropsIron;
+	public static Item SteelIngot;
+	public static Item CopperIngot;
+	public static Item TinIngot;
+	public static Item PlatinumIngot;
 
 	//Foods
 	public static ItemFood SFXItemFood_S;
@@ -57,9 +63,21 @@ public class MultiEngineeing
 	public static Block OrePlatinum;
 
 
+	public static ItemStack bronzeFromFML;
+
+
+
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent e )
 	{
+
+
+		//OreDictionary
+		//OreDictionary.registerOre("SteelIngot", new ItemStack(MultiEngineeing.SteelIngot, 1, 0));
+		//OreDictionary.registerOre("CopperIngot", new ItemStack(MultiEngineeing.CopperIngot, 1, 0));
+		//OreDictionary.registerOre("TinIngot", new ItemStack(MultiEngineeing.TinIngot, 1, 0));
+		//OreDictionary.registerOre("PlatinumIngot", new ItemStack(MultiEngineeing.PlatinumIngot, 1, 0));
+
 
 		SFXItemFood_S = ((ItemFood) new ItemFood(40, 5.0F, false).setUnlocalizedName("sagaItemFood_S").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:sfx_food"))
 				.setAlwaysEdible().setPotionEffect(Potion.moveSpeed.id, 30, 3, 1.0F);
@@ -140,15 +158,36 @@ public class MultiEngineeing
 				SFX2400ItemPickaxe = new com.lyle.multiengineering.tool.SFX2400ItemPickaxe(toolSFX).setUnlocalizedName("SFX2400ItemPickaxe").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:sfx_2400_pickaxe");
 				GameRegistry.registerItem(SFX2400ItemPickaxe,"SFX2400ItemPickaxe");
 
+				//Ingots
+				SteelIngot = new Item().setUnlocalizedName("SteelIngot").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:steel_ingot");
+				GameRegistry.registerItem(SteelIngot,"Steel Ingot");
 
+				CopperIngot = new Item().setUnlocalizedName("CopperIngot").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:copper_ingot");
+				GameRegistry.registerItem(CopperIngot,"Copper Ingot");
+
+				TinIngot = new Item().setUnlocalizedName("TinIngot").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:tin_ingot");
+				GameRegistry.registerItem(TinIngot,"Tin Ingot");
+
+				PlatinumIngot = new Item().setUnlocalizedName("PlatinumIngot").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:platinum_ingot");
+				GameRegistry.registerItem(PlatinumIngot,"Platinum Ingot");
+
+
+				//Copper Ore
 				OreCopper = new OreCopper().setBlockName("CopperOre").setCreativeTab(MultiEngineeingTab).setBlockTextureName("multiengineeing:copper_ore");
 				GameRegistry.registerBlock(OreCopper,"CopperOre");
 
+				//Tin Ore
 				OreTin = new OreTin().setBlockName("TinOre").setCreativeTab(MultiEngineeingTab).setBlockTextureName("multiengineeing:tin_ore");
 				GameRegistry.registerBlock(OreTin,"TinOre");
 
+				//Platinum Ore
 				OrePlatinum = new OrePlatinum().setBlockName("PlatinumOre").setCreativeTab(MultiEngineeingTab).setBlockTextureName("multiengineeing:platinum_ore");
 				GameRegistry.registerBlock(OrePlatinum,"PlatinumOre");
+
+
+				//OreGen
+				lyleEventManager eventmanager = new lyleEventManager();
+				GameRegistry.registerWorldGenerator(eventmanager, 0);
 
 
 	}

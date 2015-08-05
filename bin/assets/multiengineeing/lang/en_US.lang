@@ -11,6 +11,11 @@ item.SFXItemCropsIron.name=SFX Wheat
 item.SFXItemSeedIron.name=SFX Seeds
 item.sagaItemFood_S.name=SFX Food - S -
 
+item.SteelIngot.name=Steel Ingot
+item.CopperIngot.name=Copper Ingot
+item.TinIngot.name=Tin Ingot
+item.PlatinumIngot.name=Platinum Ingot
+
 item.SFX2400ItemSword.name=SFX 2400 Series - Sword -
 item.SFX2400ItemPickaxe.name= SFX 2400 Series - Pickaxe -
 item.SFX2400ItemSpade.name= SFX 2400 Series - Shovel -

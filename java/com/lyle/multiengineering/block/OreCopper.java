@@ -16,7 +16,7 @@ public class OreCopper extends Block
 	public OreCopper()
 	{
 		super(Material.iron);
-		this.setHardness(1.4F); //硬さ
+		this.setHardness(3.4F); //硬さ
 		this.setResistance(1.0F); //爆破耐性
 		this.setStepSound(Block.soundTypeStone); //音
 	}

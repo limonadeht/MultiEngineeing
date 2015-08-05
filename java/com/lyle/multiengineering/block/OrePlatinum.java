@@ -16,10 +16,11 @@ public class OrePlatinum extends Block
 	public OrePlatinum()
 	{
 		super(Material.iron);
-		this.setHardness(1.4F); //硬さ
+		this.setHardness(3.4F); //硬さ
 		this.setResistance(1.0F); //爆破耐性
 		this.setStepSound(Block.soundTypeStone); //音
 		this.setLightLevel(1.0F); //明るさ
+		this.setHarvestLevel("pickaxe", 3);
 	}
 
 	//ドロップするブロック
