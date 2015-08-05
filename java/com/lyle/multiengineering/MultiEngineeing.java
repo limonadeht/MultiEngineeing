@@ -1,56 +1,90 @@
 package com.lyle.multiengineering;
 
 import com.lyle.multiengineering.armor.AOPItemArmor;
+import com.lyle.multiengineering.block.OreCopper;
+import com.lyle.multiengineering.block.OrePlatinum;
+import com.lyle.multiengineering.block.OreTin;
+import com.lyle.multiengineering.block.SFXBlockCropsIron;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.common.util.EnumHelper;
 
 @Mod( modid = MultiEngineeing.MODID, version = MultiEngineeing.VERSION, acceptedMinecraftVersions = "[1.7,)" )
 public class MultiEngineeing
 {
+
 	@Mod.Instance("MultiEngineeing")
 	public static final String MODID = "Multi-Engineeing";
 	public static final String VERSION = "Alpha-1.0.0";
 	public static final String acceptedMinecraftVersions = "[1.7,)";
 
+	//Items
 	public static Item AOPItem;
-
-	public static Item AOPItemHelmet;
+    public static Item AOPItemHelmet;
 	public static Item AOPItemChestplate;
 	public static Item AOPItemLeggings;
 	public static Item AOPItemBoots;
-
 	public static Item SFX2400ItemSword;
+    public static Item SFX2400ItemHoe;
+    public static Item SFX2400ItemSpade;
+    public static Item SFX2400ItemAxe;
+    public static Item SFX2400ItemPickaxe;
+    public static Item SFXItemSeedIron;
+	public static Item SFXItemCropsIron;
 
-	public static Item SFX2400ItemHoe;
+	//Foods
+	public static ItemFood SFXItemFood_S;
 
-	public static Item SFX2400ItemSpade;
+	//Blocks
+	public static Block SFXBlockCropsIron;
+	public static Block OreCopper;
+	public static Block OreTin;
+	public static Block OrePlatinum;
 
-	public static Item SFX2400ItemAxe;
-
-	public static Item SFX2400ItemPickaxe;
 
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent e )
 	{
 
+		SFXItemFood_S = ((ItemFood) new ItemFood(40, 5.0F, false).setUnlocalizedName("sagaItemFood_S").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:sfx_food"))
+				.setAlwaysEdible().setPotionEffect(Potion.moveSpeed.id, 30, 3, 1.0F);
+		GameRegistry.registerItem(SFXItemFood_S,"sagaItemFood_S");
 
-		//マテリアル追加（ツール）
+
+		        //ブロック作物
+				SFXBlockCropsIron = new SFXBlockCropsIron().setBlockName("SFXBlockCropsIron").setBlockTextureName("multiengineeing:sfx_crops");
+				GameRegistry.registerBlock(SFXBlockCropsIron,"SFXBlockCropsIron");
+
+				//アイテム種　ItemSeeds（植えた時に作成されるブロック，植えることができる場所）
+				SFXItemSeedIron = new ItemSeeds(MultiEngineeing.SFXBlockCropsIron, Blocks.farmland).setUnlocalizedName("SFXItemSeedIron").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:sfx_seed");
+				GameRegistry.registerItem(SFXItemSeedIron,"SFXItemSeedIron");
+
+				//アイテム作物
+				SFXItemCropsIron = new Item().setUnlocalizedName("SFXItemCropsIron").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:sfx_item_crops");
+				GameRegistry.registerItem(SFXItemCropsIron,"SFXItemCropsIron");
+
+
+		//Added Material）
 		Item.ToolMaterial toolSFX = EnumHelper.addToolMaterial("toolSaga", 3, 2000, 600.0F, 600.0F, 30);
 		toolSFX.customCraftingMaterial = MultiEngineeing.AOPItem;
 
 
-		//アイテムのインスタンス生成
+		//Instance生成
 				AOPItem = new Item()
 				.setCreativeTab(MultiEngineeingTab)/*クリエイティブのタブ*/
 				.setUnlocalizedName("AOP")/*システム名の登録*/
@@ -105,6 +139,17 @@ public class MultiEngineeing
 				//Pickaxe
 				SFX2400ItemPickaxe = new com.lyle.multiengineering.tool.SFX2400ItemPickaxe(toolSFX).setUnlocalizedName("SFX2400ItemPickaxe").setCreativeTab(MultiEngineeingTab).setTextureName("multiengineeing:sfx_2400_pickaxe");
 				GameRegistry.registerItem(SFX2400ItemPickaxe,"SFX2400ItemPickaxe");
+
+
+				OreCopper = new OreCopper().setBlockName("CopperOre").setCreativeTab(MultiEngineeingTab).setBlockTextureName("multiengineeing:copper_ore");
+				GameRegistry.registerBlock(OreCopper,"CopperOre");
+
+				OreTin = new OreTin().setBlockName("TinOre").setCreativeTab(MultiEngineeingTab).setBlockTextureName("multiengineeing:tin_ore");
+				GameRegistry.registerBlock(OreTin,"TinOre");
+
+				OrePlatinum = new OrePlatinum().setBlockName("PlatinumOre").setCreativeTab(MultiEngineeingTab).setBlockTextureName("multiengineeing:platinum_ore");
+				GameRegistry.registerBlock(OrePlatinum,"PlatinumOre");
+
 
 	}
 
