@@ -1,3 +1,14 @@
 # en_US lang
 itemGroup.MultiEngineeing=MultiEngineeing
 item.AOP.name=AOP
+
+item.AOPItemHelmet.name=煉獄の鎧
+item.AOPItemChestplate.name=煉獄の鎧
+item.AOPItemLeggings.name=煉獄の鎧
+item.AOPItemBoots.name=煉獄の鎧
+
+item.SFX2400ItemSword.name=SFX 2400 Series - Sword -
+item.SFX2400ItemPickaxe.name= SFX 2400 Series - Pickaxe -
+item.SFX2400ItemSpade.name= SFX 2400 Series - Shovel -
+item.SFX2400ItemAxe.name=SFX 2400 Series - Axe -
+item.SFX2400ItemHoe.name=SFX 2400 Series - Hoe -
