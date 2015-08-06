@@ -1,6 +1,7 @@
 package com.lyle.multiengineering;
 
 import com.lyle.multiengineering.armor.AOPItemArmor;
+import com.lyle.multiengineering.block.BlockFluidTab;
 import com.lyle.multiengineering.block.OreCopper;
 import com.lyle.multiengineering.block.OrePlatinum;
 import com.lyle.multiengineering.block.OreTin;
@@ -8,6 +9,8 @@ import com.lyle.multiengineering.block.SFXBlockCropsIron;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -20,7 +23,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.util.EnumHelper;
@@ -42,11 +44,11 @@ public class MultiEngineeing
 	public static Item AOPItemLeggings;
 	public static Item AOPItemBoots;
 	public static Item SFX2400ItemSword;
-    public static Item SFX2400ItemHoe;
-    public static Item SFX2400ItemSpade;
-    public static Item SFX2400ItemAxe;
-    public static Item SFX2400ItemPickaxe;
-    public static Item SFXItemSeedIron;
+	public static Item SFX2400ItemHoe;
+	public static Item SFX2400ItemSpade;
+	public static Item SFX2400ItemAxe;
+	public static Item SFX2400ItemPickaxe;
+	public static Item SFXItemSeedIron;
 	public static Item SFXItemCropsIron;
 	public static Item SteelIngot;
 	public static Item CopperIngot;
@@ -63,13 +65,25 @@ public class MultiEngineeing
 	public static Block OrePlatinum;
 
 
-	public static ItemStack bronzeFromFML;
 
+	@Instance("FluidTank")
+	public static MultiEngineeing instance;
+
+	@SidedProxy(clientSide = "com.lyle.multiengineering.ClientProxyFT",
+            serverSide = "com.lyle.multiengineering.ClientProxyFT")
+	public static CommonProxyFT proxy;
+	public static Block FluidTab;
+
+	public static int FluidTankRenderId;
 
 
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent e )
 	{
+
+		FluidTab = new BlockFluidTab().setBlockName("FluidTank")
+				.setCreativeTab(MultiEngineeingTab);
+		GameRegistry.registerBlock(FluidTab, "FluidTank");
 
 
 		//OreDictionary
@@ -195,6 +209,12 @@ public class MultiEngineeing
 	@EventHandler
 	public void Init( FMLInitializationEvent e )
 	{
+
+
+		//レンダーブロッククラス・TileEntityの登録。どちらも登録はプロキシクラスを経由する。
+				this.FluidTankRenderId = proxy.getRenderID();
+				proxy.registerTileEntity();
+
 
 	}
 

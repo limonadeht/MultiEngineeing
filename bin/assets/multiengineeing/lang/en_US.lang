@@ -25,3 +25,4 @@ item.SFX2400ItemHoe.name=SFX 2400 Series - Hoe -
 tile.CopperOre.name=Copper Ore
 tile.TinOre.name=Tin Ore
 tile.PlatinumOre.name=Platinum Ore
+tile.FluidTank.name=Tank
